@@ -1,8 +1,8 @@
 credentials = {
-    'ssid' : 'KEA_Starlink',
-    'password' : 'KeaStarlink2023',
+    'ssid' : 'DIT HOTSPOT/ACCES POINT NAVN',
+    'password' : 'DIT HOTSPOT/ACCES POINT PASSWORD',
     'ADAFRUIT_IO_URL' : b'io.adafruit.com',
-    'ADAFRUIT_USERNAME' : b'KEA_ITTEK',
-    'ADAFRUIT_IO_KEY' : b'aio_OQRb72ITqutc5ZY3dDRUSt3nYCbh',
+    'ADAFRUIT_USERNAME' : b'DIT ADAFRUIT BRUGERNAVN',
+    'ADAFRUIT_IO_KEY' : b'DIN ADAFRUIT IO KEY',
     'ADAFRUIT_IO_FEEDNAME' : b'ESP32feed'
     }
