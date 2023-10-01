@@ -1,5 +1,5 @@
 import umqtt_robust2 as mqtt
-from machine import Pin, reset, UART
+from machine import UART
 from time import sleep
 # GPS programs
 from gps_bare_minimum import GPS_Minimum
@@ -22,11 +22,9 @@ def get_adafruit_gps():
         else:
             return False
 # Her kan i placere globale varibaler, og instanser af klasser
-led1 = Pin(26, Pin.OUT)
 
 while True:
     try:
-        led1.value(not led1.value())
         # Hvis funktionen returnere en string er den True ellers returnere den False
         if get_adafruit_gps():
             print(f'\ngps_data er: {get_adafruit_gps()}')
