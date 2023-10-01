@@ -21,7 +21,7 @@ gps = GPS_Minimum(uart)                    # GPS object creation
 gps_data = {
     "UTC YYYY-MM-DD": 0,
     "UTC HH:MM:SS": 0,
-    "lontitude" : -999,
+    "longitude" : -999,
     "latitude": -999,
     "validity": "V",
     "speed": 0,
