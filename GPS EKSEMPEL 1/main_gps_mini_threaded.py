@@ -32,21 +32,13 @@ gps_data = {
 def gps_tread():
     while True:
         if gps.receive_nmea_data():
-            #print("UTC YYYY-MM-DD: %04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day()))
             gps_data["UTC YYYY-MM-DD"] = "%04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day())
-            #print("UTC HH:MM:SS  : %02d:%02d:%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds()))
             gps_data["UTC HH:MM:SS"] = "%02d-%02d-%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds())
-            #print("Latitude      : %.8f" % gps.get_latitude())
             gps_data["latitude"] = "%.8f" % gps.get_latitude()
-            #print("Longitude     : %.8f" % gps.get_longitude())
             gps_data["longitude"] = "%.8f" % gps.get_longitude()
-            #print("Validity      : %s" % gps.get_validity())
             gps_data["validity"] = "%s" % gps.get_validity()
-            #print("Speed         : %.1f m/s" % gps.get_speed())
             gps_data["speed"] = "%.1f" % gps.get_speed()
-            #print("Course        : %.1f°" % gps.get_course())
             gps_data["course"] = "%.1f" % gps.get_course()
-          
             # adafruit format: speed,lat,lon,alt
             # example: 0.057412,55.69593,12.54784,22.4
             # altitude is fixed to 0.0 as it is not included in the $GPRMC frame
