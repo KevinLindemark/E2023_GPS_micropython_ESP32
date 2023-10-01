@@ -45,16 +45,15 @@ def gps_tread():
             #print("Speed         : %.1f m/s" % gps.get_speed())
             gps_data["speed"] = "%.1f" % gps.get_speed()
             #print("Course        : %.1f°" % gps.get_course())
-            gps_data["course"] = "%.1f°" % gps.get_course()
+            gps_data["course"] = "%.1f" % gps.get_course()
           
             # adafruit format: speed,lat,lon,alt
             # example: 0.057412,55.69593,12.54784,22.4
             # altitude is fixed to 0.0 as it is not included in the $GPRMC frame
             adafruit_format = str(gps.get_speed())+","+str(gps.get_latitude())+","+str(gps.get_longitude())+","+"0.0"
-            print(adafruit_format)
             gps_data["adafruit format"] = adafruit_format
-            print(gps_data)
+            print(gps_data,"\n")
     
         time.sleep(1)
  
-_thread.start_new_thread(gps_tread, ())
+_thread.start_new_thread(gps_tread, ()) # starter funktionen som en thread
