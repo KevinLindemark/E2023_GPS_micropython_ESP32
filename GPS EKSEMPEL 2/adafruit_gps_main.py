@@ -12,7 +12,6 @@ gps_speed = 9600                           # UART speed, defauls u-blox speed
 # OBJECTS
 uart = UART(gps_port, gps_speed)           # UART object creation
 gps = GPS_Minimum(uart)                    # GPS object creation
-missed_gps_frames = 0 # variable til at tælle antal gange der ikke kommer et NMEA frame i while loop
 #########################################################################   
 def get_adafruit_gps():
     if gps.receive_nmea_data():
