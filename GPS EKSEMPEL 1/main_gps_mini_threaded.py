@@ -26,7 +26,6 @@ gps_data = {
     "validity": "V",
     "speed": 0,
     "course:": 0.0,
-    "frames": 0,
     "adafruit format": 0
     }
 
@@ -44,7 +43,7 @@ def gps_tread():
             #print("Validity      : %s" % gps.get_validity())
             gps_data["validity"] = "%s" % gps.get_validity()
             #print("Speed         : %.1f m/s" % gps.get_speed())
-            gps_data["speed"] = "%.1f m/s" % gps.get_speed()
+            gps_data["speed"] = "%.1f" % gps.get_speed()
             #print("Course        : %.1f°" % gps.get_course())
             gps_data["course"] = "%.1f°" % gps.get_course()
           
