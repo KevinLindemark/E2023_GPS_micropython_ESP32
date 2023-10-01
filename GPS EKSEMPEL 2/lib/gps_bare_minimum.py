@@ -127,7 +127,7 @@ class GPS_Minimum:
         return 
     
     # The receiver funtion, call at least once per second
-    def receive_nmea_data(self, echo = True):           # Returns true if data was parsed, otherwise false
+    def receive_nmea_data(self, echo = False):           # Returns true if data was parsed, otherwise false
         self.__nmea_buffer
       
         if self.uart.any() > 0:
