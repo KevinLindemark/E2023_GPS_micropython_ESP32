@@ -1,9 +1,7 @@
 import umqtt_robust2 as mqtt
 from machine import UART
 from time import sleep
-# GPS programs
 from gps_bare_minimum import GPS_Minimum
-
 #########################################################################
 # CONFIGURATION
 gps_port = 2                               # ESP32 UART port, Educaboard ESP32 default UART port
@@ -18,18 +16,25 @@ def get_adafruit_gps():
         # hvis der er kommet end bruggbar værdi på alle der skal anvendes
         if gps.get_speed() != 0 and gps.get_latitude() != -999.0 and gps.get_longitude() != -999.0:
             # returnerer data med adafruit gps format
-            return str(gps.get_speed())+","+str(gps.get_latitude())+","+str(gps.get_longitude())+","+"0.0"
-        else:
+            speed =str(gps.get_speed())
+            lat = str(gps.get_latitude())
+            lon = str(gps.get_longitude())
+            return speed + "," + lat + "," + lon + "," + "0.0"
+        else: # hvis ikke både hastighed, latitude og longtitude er korrekte 
+            print(f"GPS data to adafruit not valid:\nspeed: {speed}\nlatitude: {lat}\nlongtitude: {lon}")
             return False
+    else:
+        return False
 # Her kan i placere globale varibaler, og instanser af klasser
 
 while True:
     try:
         # Hvis funktionen returnere en string er den True ellers returnere den False
-        if get_adafruit_gps():
-            print(f'\ngps_data er: {get_adafruit_gps()}')
+        gps_data = get_adafruit_gps()
+        if gps_data: # hvis der er korrekt data så send til adafruit
+            print(f'\ngps_data er: {gps_data}')
             mqtt.web_print(get_adafruit_gps(), 'KEA_ITTEK/feeds/mapfeed/csv')
-            
+                
         #For at sende beskeder til andre feeds kan det gøres sådan:
         # mqtt.web_print("Besked til anden feed", DIT_ADAFRUIT_USERNAME/feeds/DIT_ANDET_FEED_NAVN/ )
         #Indsæt eget username og feednavn til så det svarer til dit eget username og feed du har oprettet

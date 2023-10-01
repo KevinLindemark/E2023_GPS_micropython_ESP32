@@ -13,8 +13,8 @@ class GPS_Minimum:
     __longitude = -999.0                    # Decimal degrees
     __validity = "V"                        # Void
     __speed = 0
-    __course = 0.0   
-                                            # GGA = 0x0001, RMC = 0x0002 and ZDA = 0x0040, see other bits below    
+    __course = 0.0
+    
     def __init__(self, uart, all_nmea = False):
         self.uart = uart
         self.all_nmea = all_nmea
@@ -22,7 +22,7 @@ class GPS_Minimum:
         # Enable relevant and wanted NMEA frames
         # more infom about $GPRMC https://aprs.gids.nl/nmea/#rmc 
         uart.write("$PUBX,40,RMC,1,1,1,0*46\n") # Make sure the $GPRMC are always enabled
-       # Disable all but the $GPRMC frames
+        # Disable all but the $GPRMC frames
         uart.write("$PUBX,40,GGA,0,0,0,0*5A\n")
         uart.write("$PUBX,40,ZDA,0,0,0,0*44\n")
         uart.write("$PUBX,40,GLL,0,0,0,0*5C\n") 
@@ -69,13 +69,14 @@ class GPS_Minimum:
                 if sub_frame[6] == "W":
                     self.__longitude = -longitude
         
-            # Speed, m/s
+            # Speed, km/t
             if len(sub_frame[7]) > 0:
                 self.__speed = float(sub_frame[7]) * 1.852
         
             # Course, °
             if len(sub_frame[8]) > 0:
-                self.__course = float(sub_frame[6])
+                print(sub_frame[8])
+                self.__course = float(sub_frame[8])
         
             # UTC year, month, day
             if len(sub_frame[9]) > 5:
@@ -129,7 +130,7 @@ class GPS_Minimum:
     # The receiver funtion, call at least once per second
     def receive_nmea_data(self, echo = False):           # Returns true if data was parsed, otherwise false
         self.__nmea_buffer
-      
+        
         if self.uart.any() > 0:
             string = self.uart.readline()                # Collect incoming chars
             try:
@@ -142,7 +143,11 @@ class GPS_Minimum:
                     self.__nmea_buffer = ""
               
                     return True
+            except ValueError as e:
+                print(f"Failed to parse NMEA sentence with error: {e}")
+                return False
             except:
+                print("An error hapened while parsing NMEA sentence")
                 return False
             
         return False
