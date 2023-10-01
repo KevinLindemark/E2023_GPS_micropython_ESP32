@@ -13,7 +13,7 @@ gps = GPS_Minimum(uart)                      # GPS object creation
 # PROGRAM
 while True:
     if gps.receive_nmea_data():
-        print(f"UTC YYYY-MM-DD  : {gps.get_utc_year()}-{gps.get_utc_month()}-{gps.get_utc_day()}")
+        print(f"UTC YYYY-MM-DD  : {gps.get_utc_year()}-{gps.get_utc_month():02d}-{gps.get_utc_day():02d}")
         print(f"UTC HH:MM:SS    : {gps.get_utc_hours()}:{gps.get_utc_minutes():02d}:{gps.get_utc_seconds():02d}")
         print(f"Latitude        : {gps.get_latitude():.8f}")
         print(f"Longitude       : {gps.get_longitude():.8f}")
