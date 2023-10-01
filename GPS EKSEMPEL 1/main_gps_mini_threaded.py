@@ -39,7 +39,7 @@ def gps_tread():
             #print("Latitude      : %.8f" % gps.get_latitude())
             gps_data["latitude"] = "%.8f" % gps.get_latitude()
             #print("Longitude     : %.8f" % gps.get_longitude())
-            gps_data["longtidude"] = "%.8f" % gps.get_longitude()
+            gps_data["longitude"] = "%.8f" % gps.get_longitude()
             #print("Validity      : %s" % gps.get_validity())
             gps_data["validity"] = "%s" % gps.get_validity()
             #print("Speed         : %.1f m/s" % gps.get_speed())
