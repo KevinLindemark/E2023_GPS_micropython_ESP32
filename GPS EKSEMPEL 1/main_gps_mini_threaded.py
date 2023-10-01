@@ -36,7 +36,7 @@ def gps_tread():
             #print("UTC YYYY-MM-DD: %04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day()))
             gps_data["UTC YYYY-MM-DD"] = "%04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day())
             #print("UTC HH:MM:SS  : %02d:%02d:%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds()))
-            gps_data["UTC HH:MM:SS"] = "%04d-%02d-%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds())
+            gps_data["UTC HH:MM:SS"] = "%02d-%02d-%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds())
             #print("Latitude      : %.8f" % gps.get_latitude())
             gps_data["latitude"] = "%.8f" % gps.get_latitude()
             #print("Longitude     : %.8f" % gps.get_longitude())
