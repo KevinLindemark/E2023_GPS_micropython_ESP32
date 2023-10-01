@@ -1,26 +1,17 @@
 # GPS program
 from machine import UART
 from gps_bare_minimum import GPS_Minimum
-
 import _thread
 import time
 
 #########################################################################
 # CONFIGURATION
-
 gps_port = 2                               # ESP32 UART port, Educaboard ESP32 default UART port
 gps_speed = 9600                           # UART speed, defauls u-blox speed
-gps_echo = True                            # Echo NMEA frames: True or False
-gps_all_NMEA = False                       # Enable all NMEA frames: True or False
-
-threaded = True                            # Use threaded (True) or loop (False)
-
 #########################################################################
 # OBJECTS
-
 uart = UART(gps_port, gps_speed)           # UART object creation
 gps = GPS_Minimum(uart)                    # GPS object creation
-
 #########################################################################    
 # PROGRAM
 
@@ -39,11 +30,9 @@ gps_data = {
     "adafruit format": 0
     }
 
-print("GPS test program\n")
-
 def gps_tread():
     while True:
-        if gps.receive_nmea_data(gps_echo):
+        if gps.receive_nmea_data():
             #print("UTC YYYY-MM-DD: %04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day()))
             gps_data["UTC YYYY-MM-DD"] = "%04d-%02d-%02d" % (gps.get_utc_year(), gps.get_utc_month(), gps.get_utc_day())
             #print("UTC HH:MM:SS  : %02d:%02d:%02d" % (gps.get_utc_hours(), gps.get_utc_minutes(), gps.get_utc_seconds()))

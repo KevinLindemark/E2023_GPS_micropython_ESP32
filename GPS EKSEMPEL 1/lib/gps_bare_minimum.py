@@ -13,9 +13,8 @@ class GPS_Minimum:
     __longitude = -999.0                    # Decimal degrees
     __validity = "V"                        # Void
     __speed = 0
-    __course = 0.0   
-    __frames_received = 0                    # May be queried to find out if even invalid frames have been received
-                                            # GGA = 0x0001, RMC = 0x0002 and ZDA = 0x0040, see other bits below    
+    __course = 0.0
+    
     def __init__(self, uart, all_nmea = False):
         self.uart = uart
         self.all_nmea = all_nmea
@@ -23,7 +22,7 @@ class GPS_Minimum:
         # Enable relevant and wanted NMEA frames
         # more infom about $GPRMC https://aprs.gids.nl/nmea/#rmc 
         uart.write("$PUBX,40,RMC,1,1,1,0*46\n") # Make sure the $GPRMC are always enabled
-       # Disable all but the $GPRMC frames
+        # Disable all but the $GPRMC frames
         uart.write("$PUBX,40,GGA,0,0,0,0*5A\n")
         uart.write("$PUBX,40,ZDA,0,0,0,0*44\n")
         uart.write("$PUBX,40,GLL,0,0,0,0*5C\n") 
