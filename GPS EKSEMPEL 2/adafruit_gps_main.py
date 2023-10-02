@@ -35,8 +35,7 @@ while True:
         gps_data = get_adafruit_gps()
         if gps_data: # hvis der er korrekt data så send til adafruit
             print(f'\ngps_data er: {gps_data}')
-            mqtt.web_print(gps_data, 'KEA_ITTEK/feeds/mapfeed/csv')
-                
+            mqtt.web_print(gps_data, 'KEA_ITTEK/feeds/mapfeed/csv')                
         #For at sende beskeder til andre feeds kan det gøres sådan:
         # mqtt.web_print("Besked til anden feed", DIT_ADAFRUIT_USERNAME/feeds/DIT_ANDET_FEED_NAVN/ )
         #Indsæt eget username og feednavn til så det svarer til dit eget username og feed du har oprettet
