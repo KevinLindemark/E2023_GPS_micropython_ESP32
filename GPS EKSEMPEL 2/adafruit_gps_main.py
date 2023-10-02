@@ -12,6 +12,7 @@ uart = UART(gps_port, gps_speed)           # UART object creation
 gps = GPS_Minimum(uart)                    # GPS object creation
 #########################################################################   
 def get_adafruit_gps():
+    speed = lat = lon = None # Opretter variabler med None som værdi
     if gps.receive_nmea_data():
         # hvis der er kommet end bruggbar værdi på alle der skal anvendes
         if gps.get_speed() != 0 and gps.get_latitude() != -999.0 and gps.get_longitude() != -999.0:
