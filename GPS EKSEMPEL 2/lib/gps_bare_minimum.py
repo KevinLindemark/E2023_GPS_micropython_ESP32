@@ -12,7 +12,7 @@ class GPS_Minimum:
     __latitude = -999.0                     # Decimal degrees
     __longitude = -999.0                    # Decimal degrees
     __validity = "V"                        # Void
-    __speed = 0
+    __speed = -999
     __course = 0.0
     
     def __init__(self, uart, all_nmea = False):

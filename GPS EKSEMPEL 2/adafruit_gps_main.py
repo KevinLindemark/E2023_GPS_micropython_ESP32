@@ -15,11 +15,12 @@ def get_adafruit_gps():
     speed = lat = lon = None # Opretter variabler med None som værdi
     if gps.receive_nmea_data():
         # hvis der er kommet end bruggbar værdi på alle der skal anvendes
-        if gps.get_speed() != 0 and gps.get_latitude() != -999.0 and gps.get_longitude() != -999.0:
-            # returnerer data med adafruit gps format
+        if gps.get_speed() != -999 and gps.get_latitude() != -999.0 and gps.get_longitude() != -999.0 and gps.get_validity() == "A":
+            # gemmer returværdier fra metodekald i variabler
             speed =str(gps.get_speed())
             lat = str(gps.get_latitude())
             lon = str(gps.get_longitude())
+            # returnerer data med adafruit gps format
             return speed + "," + lat + "," + lon + "," + "0.0"
         else: # hvis ikke både hastighed, latitude og longtitude er korrekte 
             print(f"GPS data to adafruit not valid:\nspeed: {speed}\nlatitude: {lat}\nlongtitude: {lon}")
