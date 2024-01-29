@@ -58,7 +58,7 @@ class GPS_Minimum:
                 lad = (laf - lai * 100) / 60.0  # Convert to decimal degrees
                 self.__latitude = lai + lad
                 if sub_frame[4] == "S":
-                    self.__latitude = -latitude                
+                    self.__latitude = -self.__latitude              
 
             # Longitude
             if len(sub_frame[5]) > 0:
@@ -67,7 +67,7 @@ class GPS_Minimum:
                 lod = (lof - loi * 100) / 60.0  # Convert to decimal degrees
                 self.__longitude = loi + lod
                 if sub_frame[6] == "W":
-                    self.__longitude = -longitude
+                    self.__longitude = -self.__longitude
         
             # Speed, km/t
             if len(sub_frame[7]) > 0:
